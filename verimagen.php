@@ -7,10 +7,11 @@
 <body>
 	<form action="">
 		<input type="text" name="id">
-		<button name="enviar">Consultar</button>
+		<button name="enviar" type="submit">Consultar</button>
 	</form>
 
 	<h1>Foto:</h1>
-	<img src="display.php?id=<?php echo $_REQUEST['id']; ?>">
+	<img src="view/
+    display.php?id=<?php echo $_REQUEST['id']; ?>">
 </body>
 </html>

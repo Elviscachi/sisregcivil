@@ -1,5 +1,5 @@
 <?php
-include 'controller/Consulta.php';
+include '../controller/Consulta.php';
 $nombre = $_REQUEST['nombre'];
 $paterno = $_REQUEST['paterno'];
 $materno = $_REQUEST['materno'];
@@ -18,7 +18,7 @@ $result = Recoger($nombre, $paterno, $materno);
  <body>
      <div id="header">
          <h1>Listado</h1>
-         <a href="index.php">Regresar</a>
+         <a href="../index.php">Regresar</a>
      </div>
      <div id="cuerpo">
          <form action="">

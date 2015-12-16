@@ -12,8 +12,8 @@
         <ul>
             <li><a href="save.php">Ingresar Nueva Imagen</a></li>
             <li><a href="nombres.php">Ingresar Datos de Registro</a></li>
-            <li><a href="listado.php">Listado de nombres</a></li>
-            <li><a href="verimagen.html">Ver la imagen</a></li>
+            <li><a href="view/listado.php">Listado de nombres</a></li>
+            <li><a href="verimagen.php">Ver la imagen</a></li>
         </ul>
     </div>
 </body>
