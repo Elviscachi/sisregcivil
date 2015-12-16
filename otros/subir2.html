@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Subir imagen por SurKaiser</title>
+</head>
+<body>
+<table width="50%" align="center">
+<tr>
+<td width="25%">Selecciona una imagen</td>
+<td width="25%"> Archivos permitidos : *jpg, *bmp, *png y *gif</td>
+</tr>
+<!-- El formulario se le añade enctype para que pueda subir la imagen al servidor -->
+<form action="subir.php" method="post" enctype="multipart/form-data">
+<tr>
+<td></td>
+<td><input type="file" name="imagen" /></td>
+</tr>
+<tr>
+<td></td>
+<td><input type="submit" value="enviar"></td>
+</tr>
+</form>
+</table>
+<?php
+        //Comprobamos si no ha enviado ninguna imagen
+   if(empty($_FILES["imagen"]))
+   {
+        //Si no lo ha hecho dejamos en blanco la pagina.
+         echo "&nbsp;";
+         }
+         else{
+                  //Si ya envio la imagen procedemos a subirla al servidor
+                //Creamos una variable con las extensiones de los archivos que permitiremos que pueda subir
+         $extensiones = "jpg , bmp , gif , png , jpeg ";
+                //Creamos una variable que va contener la informacion enviada por el formulario
+        $imagen1 = $_FILES["imagen"];
+           //Veamos que extension tiene el archivo enviado, para eso utilizaremos la funcion explode
+          // esta funcion sirve para separar una variable encontrando un string que nosotros le indiquemos
+          // en este caso sera un "." simple punto que servira para separar el nombre de la imagen de la extension
+         //Lo que hace es esto : nombre.jpg lo separa en mode de array a "nombre" y "jpg"
+        $extension = explode(".",$imagen1["name"]);
+                  //Verificamos si la extension separada existe en una de las extensiones permitidas
+                 //para eso utilizamos la funcion strstr que sirve para buscar un string dentro de otro
+           if(!strstr($extensiones,$extension[1]))
+                  {
+                                  //Si la extension no fue encontrada entre nuestras extensiones , mostremos mensaje de error
+                        echo "Por favor, sube una imagen con las siguientes extensiones :
+                                *jpg, *bmp, *png y *gif , no esta permitido subir archivos con esta extension : .".$extension[1];
+                                }
+                         else {
+                                                         //Si todo salio bien movemos el archivo subido a nuestra carpeta de almacenamiento
+                           move_uploaded_file($imagen1["tmp_name"], "imagenes/".$imagen1["name"]);
+                           echo "Tu imagen se ha subido correctamente";
+                         }
+}
+?>
+</body>
+</html>

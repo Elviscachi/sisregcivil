@@ -1,0 +1,137 @@
+hola buenas quería saber como subo una imagen de un file a una carpeta y que me la lea en la BD que esta en postgresql que por mas que lo intento no sale...
+
+este es mi codigo de la BD
+create table ajustes_slider(
+id serial,
+ruta character varying (250)
+url character varying (250)
+PK_id
+
+ahora lo que tengo es esto:
+
+Guardarimg.php
+
+<?php
+
+$max=1500000;
+$nombreclean=htmlspecialchars($email);
+$nuevodirectorio="_img/$nombreclean";
+mkdir ($nuevodirectorio);
+$uploaddir = "$nuevodirectorio/";
+$filesize = $_FILES['upfile']['size'];
+$filename = trim($_FILES['upfile']['name']);
+$filename = substr($filename, -20);
+$filename = ereg_replace(" ", "", $filename);
+if($filesize < $max){
+if($filesize > 0){
+if((ereg(".jpg", $filename)) || (ereg(".gif", $filename)) || (ereg(".JPG", $filename))|| (ereg(".GIF", $filename))){
+$uploadfile = $uploaddir . $filename;
+if (move_uploaded_file($_FILES['upfile']['tmp_name'], $uploadfile)) {
+print("Archivo subido correctamente");
+} else {
+print("Error de conexi&oacute;n con el servidor.");
+}
+} else {
+print("Sólo se permiten imágenes en formato jpg. y gif., no se ha podido adjuntar.");
+}
+}
+else {
+print("<br><br>Campo vac&iacute;o, no ha seleccionado ninguna imagen");
+}
+}
+else {
+print("<br><br>La imagen que ha intentado adjuntar es mayor de 1.5 Mb, si desea cambie el tamaño del archivo y vuelva a intentarlo.");
+}
+?>
+
+
+
+y index.php
+
+<?php
+session_start();
+
+define('RAIZ',"","");
+include(RAIZ."_partes/_parte1.php");
+include(RAIZ."_bib/class_panelcontrol.php");
+
+
+
+
+
+?>
+<script language="javascript">
+<!--
+function confirmar(id){
+if(confirm("¿Esta seguro de que desea eliminar esta imagen?"))
+window.location='eliminarImagen.php?id='+id;
+}
+function desplegar(){
+if(document.getElementById('nuevo').style.visibili ty == "visible")
+document.getElementById('nuevo').style.visibility = "collapse";
+else
+document.getElementById('nuevo').style.visibility = "visible";
+}
+// -->
+</script>
+<div id="ed_1">
+<div class="titulo-cont">
+Listado de fotos del Slider
+</div>
+<div id="ed_2">
+<form name="guardarcambios" action="guardarimg.php" method="post">
+<table class="listado" cellspacing="0">
+<tr>
+<th class="centrado" title="Vista preliminar">Imagen</th>
+<th class="centrado" title="url de la pagina">Url</th>
+<th>Añade imagen <input type="file" class="imagen " /></th>
+
+
+
+</tr>
+<?php
+$i=-1;
+$array=array();
+
+foreach (PanelControl::sliderRuta() as $ruta){
+
+$array[]=$ruta;
+}
+
+
+foreach (PanelControl::sliderUrl() as $url) {
+$i++;
+
+
+?>
+<tr>
+
+
+
+<td class="centrado" width="450"><img style="margin: 0 auto; height:100px; width:125px" src="<?php echo $array[$i];?>" alt="Imagen del slider" /></td>
+<td class="centrado" width="200"><input type="text" title="url" value="<?php echo $url; ?>" /> </td>
+<td class="modificar_eliminar"><a href="javascript:confirmar('<?php echo PanelControl::recogeid();?>') title="Eliminar imagen"><img src="<?php echo RAIZ;?>_img/eliminar.jpg" alt="Eliminar" /></a></td>
+
+</tr>
+<?php } ?>
+
+
+<tr>
+<td colspan="6"><!--    <p><a href="imagenes-edicion.php" title="Ver la lista de imgenes de edición">Ver imágenes de edición</a></p>-->
+<div class="centrado">
+<input class="btn_panel" onmouseover="this.style.color='#000'; this.style.background='#DEF';this.style.border='#3 33 inset 2px';" onmouseout="this.style.color='#FFF'; this.style.background='#46a';this.style.border='#0 00 outset 2px';" type="submit" name="guardarcambios" value="Guardar" title="Guardar Publicaciones" \>
+</div></td>
+</tr>
+
+</table>
+</form>
+<br clear="all"/>
+</div>
+<div id="ed_3"></div>
+</div>
+<?php
+include (RAIZ . "_partes/_parte2.php");
+?>
+
+
+gracias por la ayuda
