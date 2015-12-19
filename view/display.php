@@ -1,6 +1,5 @@
 <?php
-include '../controller/Consulta.php';
-
+include('../controller/Consulta.php');
 $id    = $_REQUEST['id'];
 $image = MostrarImagen($id);
 

@@ -86,7 +86,7 @@
 
 	<a href="../index.php">Regresar</a>
 
-	<p><strong>Ejemplo:</strong> uso de entradas de formulario para seleccionar archivos. ¡Haz una prueba!</p>
+	<p>Seleccione una imagen</p>
   <div class="example">
     <input type="file" id="files1" name="files1[]" />
     <output id="file_list"></output>
@@ -101,7 +101,7 @@
 	  var files = evt.target.files;
 	  var output = [];
 	  for (var i = 0, f; f = files[i]; i++) {
-	    output.push('<li><form action=../controller/Guardar.php><input type=text name=nombre value=', escape(f.name), '> <input type=text name=tipo value=', f.type || 'n/a', '> <input type=text name=taman value=',
+	    output.push('<li><form action="../controller/Guardar.php" method="post" enctype="multipart/form-data"><input type=text name=nombre value=', escape(f.name), '> <input type=text name=tipo value=', f.type || 'n/a', '> <input type=text name=taman value=',
 	                f.size, '> bytes, last modified: ',
 	                f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
 	                '<button name=enviar type=submit>Guardar</button></form></li>');

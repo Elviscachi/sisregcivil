@@ -23,9 +23,8 @@
 	$datos[2]="$tipo";
 	$datos[3]="$taman";
 	$datos[4]="$idimagen";
-	$imagen = "$imagen";
+	$imagen = "/var/www/html/sisregcivil/imagenes/".$imagen;
 
 
-	$administracion->AddRegistro($datos, $imagen);
-
+	$administracion->AddImagen($datos, $imagen);
  ?>
