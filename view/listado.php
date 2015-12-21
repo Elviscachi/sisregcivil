@@ -1,4 +1,5 @@
 <?php
+include 'header.php';
 include '../controller/Consulta.php';
 $nombre = $_REQUEST['nombre'];
 $paterno = $_REQUEST['paterno'];

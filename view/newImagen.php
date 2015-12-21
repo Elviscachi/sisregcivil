@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Imagenes</title>
+<?php include 'header.php'; ?>
+
 	<script type="text/javascript">
 		// Check for the various File API support.
 		if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -13,87 +10,91 @@
 	</script>
 
 	<script>
-  function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
+	function handleFileSelect(evt) {
+	    var files = evt.target.files; // FileList object
 
-    // files is a FileList of File objects. List some properties.
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate.toLocaleDateString(), '</li>');
-    }
-    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-  }
+	    // files is a FileList of File objects. List some properties.
+	    var output = [];
+	    for (var i = 0, f; f = files[i]; i++) {
+	      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+	                  f.size, ' bytes, last modified: ',
+	                  f.lastModifiedDate.toLocaleDateString(), '</li>');
+	    }
+	    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  	}
 
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
-</script>
-<script src="../js/modernizr.custom.82437.js"
-></script>
-<style>
-.example {
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-#drop_zone {
-  border: 2px dashed #bbb;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  padding: 25px;
-  text-align: center;
-  font: 20pt bold 'Vollkorn';
-  color: #bbb;
-}
-.thumb {
-  height: 75px;
-  border: 1px solid #000;
-  margin: 10px 5px 0 0;
-}
-#progress_bar {
-  margin: 10px 0;
-  padding: 3px;
-  border: 1px solid #000;
-  font-size: 14px;
-  clear: both;
-  opacity: 0;
-  -o-transition: opacity 1s linear;
-  -moz-transition: opacity 1s linear;
-  -webkit-transition: opacity 1s linear;
-}
-#progress_bar.loading {
-  opacity: 1.0;
-}
-#progress_bar .percent {
-  background-color: #99ccff;
-  height: auto;
-  width: 0;
-}
-#byte_content {
-  margin: 5px 0;
-  max-height: 100px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-#byte_range {
-  margin-top: 5px;
-}
-</style>
-</head>
-<body>
+  	document.getElementById('files').addEventListener('change', handleFileSelect, false);
+	</script>
+
+	<style>
+	.example {
+	  padding: 10px;
+	  border: 1px solid #ccc;
+	}
+	#drop_zone {
+	  border: 2px dashed #bbb;
+	  -moz-border-radius: 5px;
+	  -webkit-border-radius: 5px;
+	  border-radius: 5px;
+	  padding: 25px;
+	  text-align: center;
+	  font: 20pt bold 'Vollkorn';
+	  color: #bbb;
+	}
+	.thumb {
+	  height: 75px;
+	  border: 1px solid #000;
+	  margin: 10px 5px 0 0;
+	}
+	#progress_bar {
+	  margin: 10px 0;
+	  padding: 3px;
+	  border: 1px solid #000;
+	  font-size: 14px;
+	  clear: both;
+	  opacity: 0;
+	  -o-transition: opacity 1s linear;
+	  -moz-transition: opacity 1s linear;
+	  -webkit-transition: opacity 1s linear;
+	}
+	#progress_bar.loading {
+	  opacity: 1.0;
+	}
+	#progress_bar .percent {
+	  background-color: #99ccff;
+	  height: auto;
+	  width: 0;
+	}
+	#byte_content {
+	  margin: 5px 0;
+	  max-height: 100px;
+	  overflow-y: auto;
+	  overflow-x: hidden;
+	}
+	#byte_range {
+	  margin-top: 5px;
+	}
+	</style>
 
 
 
-	<a href="../index.php">Regresar</a>
+ 	<div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-4">
+            <div class="list-group table-of-contents">
+             	<a href="../index.php">Regresar</a>
+				<p>Seleccione una imagen</p>
+			  	<div class="example">
+			    	<input type="file" id="files1" name="files1[]" />
+			    	<output id="file_list"></output>
+			  	</div>
+            </div>
+          </div>
+        </div>
+    </div>
 
-	<p>Seleccione una imagen</p>
-  <div class="example">
-    <input type="file" id="files1" name="files1[]" />
-    <output id="file_list"></output>
-  </div>
 
 
-  <script>
+<script>
 	var get = function(id) { return document.getElementById(id); }
 
 	var example1 = example1 || {};
@@ -271,6 +272,7 @@
 	  get(id).addEventListener('change', self.handleFileSelect, false);
 	};
 	var example5 = new Example5('file5');
-	</script>
-</body>
-</html>
+</script>
+
+
+<?php include 'footer.php'; ?>

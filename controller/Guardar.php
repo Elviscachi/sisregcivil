@@ -27,4 +27,6 @@
 
 
 	$administracion->AddImagen($datos, $imagen);
+
+	header("Location: ../view/newimagen.php");
  ?>

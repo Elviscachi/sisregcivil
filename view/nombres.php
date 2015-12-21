@@ -1,4 +1,5 @@
 <?php
+    include 'header.php';
     include_once('../controller/Consulta.php');
     $num = Registro();
     $next = $num + 1;
